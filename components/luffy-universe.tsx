@@ -42,7 +42,7 @@ const videos = [
     type: "Runway nocturne à Paris",
     runtime: "01:48",
     image:
-      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&q=86",
+      "/images/c1.jpeg",
     videoUrl:
       "/videos/luffy.mp4",
   },
@@ -51,18 +51,18 @@ const videos = [
     type: "Film campagne",
     runtime: "02:16",
     image:
-      "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1200&q=86",
+      "/images/c13.jpeg",
     videoUrl:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4",
+      "/videos/chrome.mp4",
   },
   {
     title: "Atelier cyber",
     type: "Séquence fittings",
     runtime: "00:58",
     image:
-      "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200&q=86",
+      "/images/c6.jpeg",
     videoUrl:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
+      "/videos/afterdark.mp4",
   },
 ];
 

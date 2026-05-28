@@ -29,27 +29,27 @@ export const navItems = [
 
 export const featuredModels: FeaturedModel[] = [
   {
-    name: "Aurelia Noire",
-    city: "Paris",
-    image: "/images/c12.jpeg",
+    name: "Nidal Christou",
+    city: "Burkina Faso",
+    image: "/images/c4.jpeg",
     signal: "Repérage éditorial IA",
   },
   {
     name: "Kai Voss",
     city: "Milan",
-    image: "/images/c7.jpeg",
+    image: "/images/c16.jpg",
     signal: "Runway chrome",
   },
   {
     name: "Sienna Vale",
     city: "New York",
-    image: "/images/c8.jpeg",
+    image: "/images/c19.jpg",
     signal: "Campagne prestige",
   },
   {
     name: "Mika Saint",
     city: "Tokyo",
-    image: "/images/c9.jpeg",
+    image: "/images/c20.jpg",
     signal: "Portfolio en mouvement",
   },
 ];
@@ -59,7 +59,7 @@ export const fashionVideos: FashionVideo[] = [
     title: "Neon Couture Walk",
     meta: "Boucle runway 4K",
     image:
-      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=85",
+      "/images/c21.jpg",
     videoUrl:
       "/videos/luffy.mp4",
   },
@@ -67,17 +67,17 @@ export const fashionVideos: FashionVideo[] = [
     title: "Chrome Casting Room",
     meta: "Reel studio",
     image:
-      "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=900&q=85",
+      "/images/c18.jpg",
     videoUrl:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4",
+      "/videos/chrome.mp4",
   },
   {
     title: "Afterdark Fittings",
     meta: "Montage créateur",
     image:
-      "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=85",
+      "/images/c17.jpg",
     videoUrl:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
+      "/videos/afterdark.mp4",
   },
 ];
 
