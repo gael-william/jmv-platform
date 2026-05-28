@@ -123,14 +123,14 @@ export function FeedCard({
             <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.03),rgba(0,0,0,0.2)_42%,rgba(0,0,0,0.94)),radial-gradient(circle_at_70%_8%,rgba(255,255,255,0.15),transparent_30%)]" />
             <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.8),transparent)] opacity-60" />
 
-            <div className="absolute left-3 top-3 flex items-center gap-2">
+            <div className="absolute left-2 top-2 flex items-center gap-1.5 sm:left-3 sm:top-3 sm:gap-2">
               {isVideo ? (
-                <span className="grid size-10 place-items-center rounded-full border border-white/20 bg-black/35 text-white shadow-[0_0_32px_rgba(255,255,255,0.16)] backdrop-blur-xl">
-                  <Play className="ml-0.5 size-4 fill-current" />
+                <span className="grid size-8 place-items-center rounded-full border border-white/20 bg-black/35 text-white shadow-[0_0_32px_rgba(255,255,255,0.16)] backdrop-blur-xl sm:size-10">
+                  <Play className="ml-0.5 size-3.5 fill-current sm:size-4" />
                 </span>
               ) : null}
-              <span className="inline-flex max-w-[11rem] items-center gap-1.5 rounded-full border border-white/12 bg-black/35 px-3 py-2 text-[0.65rem] uppercase tracking-[0.18em] text-white/70 backdrop-blur-xl">
-                <Sparkles className="size-3 text-[#d9b166]" />
+              <span className="inline-flex max-w-[8rem] items-center gap-1 rounded-full border border-white/12 bg-black/35 px-2 py-1.5 text-[0.52rem] uppercase tracking-[0.14em] text-white/70 backdrop-blur-xl sm:max-w-[11rem] sm:gap-1.5 sm:px-3 sm:py-2 sm:text-[0.65rem] sm:tracking-[0.18em]">
+                <Sparkles className="size-2.5 text-[#d9b166] sm:size-3" />
                 {category}
               </span>
             </div>
@@ -140,20 +140,20 @@ export function FeedCard({
               Aperçu
             </div>
 
-            <div className="absolute inset-x-3 bottom-3">
-              <div className="border border-white/12 bg-black/46 p-3 backdrop-blur-2xl sm:p-4">
-                <div className="flex items-center justify-between gap-3">
-                  <p className="truncate text-[0.65rem] uppercase tracking-[0.22em] text-[#d9b166]">
+            <div className="absolute inset-x-2 bottom-2 sm:inset-x-3 sm:bottom-3">
+              <div className="border border-white/10 bg-black/38 p-2.5 backdrop-blur-2xl sm:border-white/12 sm:bg-black/46 sm:p-4">
+                <div className="flex items-center justify-between gap-2 sm:gap-3">
+                  <p className="truncate text-[0.55rem] uppercase tracking-[0.16em] text-[#d9b166] sm:text-[0.65rem] sm:tracking-[0.22em]">
                     {location}
                   </p>
-                  <ArrowUpRight className="size-4 shrink-0 text-white/52 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <ArrowUpRight className="size-3.5 shrink-0 text-white/52 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 sm:size-4" />
                 </div>
-                <h3 className="mt-2 text-xl font-semibold leading-tight sm:text-2xl">
+                <h3 className="mt-1 line-clamp-2 text-base font-semibold leading-[1.08] sm:mt-2 sm:text-2xl sm:leading-tight">
                   {modelName}
                 </h3>
-                <p className="mt-1 line-clamp-2 text-xs leading-5 text-white/56 sm:text-sm">{title}</p>
+                <p className="mt-1 hidden line-clamp-2 text-xs leading-5 text-white/56 sm:block sm:text-sm">{title}</p>
                 {tags.length ? (
-                  <div className="mt-3 flex flex-wrap gap-1.5">
+                  <div className="mt-3 hidden flex-wrap gap-1.5 sm:flex">
                     {tags.slice(0, 3).map((tag) => (
                       <span key={tag} className="rounded-full bg-white/10 px-2.5 py-1 text-[0.65rem] text-white/62">
                         {tag}
@@ -165,25 +165,25 @@ export function FeedCard({
             </div>
           </div>
 
-          <div className="flex items-center justify-between gap-3 border-t border-white/10 px-3 py-3 sm:px-4">
+          <div className="flex items-center justify-between gap-2 border-t border-white/10 px-2.5 py-2 sm:gap-3 sm:px-4 sm:py-3">
             <button
               type="button"
               onClick={handleLikeClick}
               disabled={isLiking || hasLiked}
               aria-label={hasLiked ? `${modelName} déjà aimé` : `Aimer ${modelName}`}
               className={cn(
-                "inline-flex min-w-0 items-center gap-1.5 rounded-full border px-3 py-2 text-sm transition",
+                "inline-flex min-w-0 items-center gap-1.5 rounded-full border px-2.5 py-1.5 text-xs transition sm:px-3 sm:py-2 sm:text-sm",
                 hasLiked
                   ? "border-[#d9b166]/40 bg-[#d9b166]/10 text-[#d9b166]"
                   : "border-white/12 bg-white/7 text-white/82 hover:border-[#d9b166]/70 hover:bg-[#d9b166]/12"
               )}
             >
-              <Heart className={cn("size-4", hasLiked && "fill-current")} />
+              <Heart className={cn("size-3.5 sm:size-4", hasLiked && "fill-current")} />
               <span>{formattedLikes}</span>
             </button>
 
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-black/25 px-3 py-2 text-sm text-white/58">
-              <MessageCircle className="size-4" />
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-black/25 px-2.5 py-1.5 text-xs text-white/58 sm:px-3 sm:py-2 sm:text-sm">
+              <MessageCircle className="size-3.5 sm:size-4" />
               {formattedComments}
             </span>
           </div>
