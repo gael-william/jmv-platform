@@ -10,15 +10,18 @@ import {
   ArrowUpRight,
   BadgeCheck,
   CalendarDays,
+  Camera,
   Clapperboard,
   Eclipse,
   Globe2,
   Layers3,
+  MapPin,
   Play,
   RadioTower,
   ScanFace,
   Sparkles,
   Timer,
+  Trophy,
   X,
   Zap,
 } from "lucide-react";
@@ -36,82 +39,161 @@ import {
 import { UniverseTransitionLink } from "@/components/universe-transition";
 import { cn } from "@/lib/utils";
 
-const videos = [
+const luffyImages = [
+  "/images/c9.jpeg",
+  "/images/c10.jpeg",
+  "/images/c11.jpeg",
+  "/images/c14.jpeg",
+  "/images/c15.jpeg",
+  "/images/c16.jpg",
+  "/images/c17.jpg",
+  "/images/c18.jpg",
+  "/images/c19.jpg",
+  "/images/c20.jpg",
+  "/images/c21.jpg",
+  "/images/luffy-shooting-1.jpeg",
+  "/images/luffy-shooting-2.jpeg",
+  "/images/luffy-shooting-3.jpeg",
+  "/images/luffy-shooting-4.jpeg",
+  "/images/luffy-shooting-5.jpeg",
+  "/images/luffy-shooting-6.jpeg",
+  "/images/luffy-shooting-7.jpeg",
+  "/images/luffy-shooting-8.jpeg",
+  "/images/luffy-shooting-9.jpeg",
+  "/images/luffy-shooting-10.jpeg",
+];
+
+const videoFiles = [
+  "luffy-casting-video-1.mp4",
+  "luffy-casting-video-2.mp4",
+  "luffy-casting-video-3.mp4",
+  "luffy-casting-video-4.mp4",
+  "luffy-casting-video-5.mp4",
+  "luffy-casting-video-6.mp4",
+  "luffy-casting-video-7.mp4",
+  "luffy-casting-video-8.mp4",
+  "luffy-casting-video-9.mp4",
+  "luffy-casting-video-10.mp4",
+  "luffy-casting-video-11.mp4",
+  "luffy-casting-video-12.mp4",
+  "luffy-casting-video-13.mp4",
+  "luffy-casting-video-14.mp4",
+  "WhatsApp Video 2026-06-03 at 15.52.08.mp4",
+];
+
+const videoNarratives = [
+  ["Casting signal rouge", "Mémoire casting", "Première tension caméra"],
+  ["Walk precision", "Training runway", "Contrôle du pas et posture"],
+  ["Studio silence", "Test lumière", "Portrait en lumière dure"],
+  ["Crimson fitting", "Backstage couture", "Essayage avant transmission"],
+  ["Editorial pulse", "Shooting mode", "Direction regard et silhouette"],
+  ["Runway ignition", "Apparition runway", "Énergie podium internationale"],
+  ["Chrome attitude", "Campagne futuriste", "Signature visuelle JMV"],
+  ["Casting room", "Sélection maison", "Présence face au jury"],
+  ["Afterdark motion", "Film campagne", "Mouvement nocturne premium"],
+  ["Gold archive", "Expérience internationale", "Signal luxe global"],
+  ["Maison protocol", "Préparation couture", "Rythme backstage"],
+  ["Paris silhouette", "Portfolio premium", "Profil éditorial"],
+  ["Dimension walk", "Runway augmenté", "Défilé cyber luxe"],
+  ["Luffy focus", "Portrait motion", "Intensité caméra"],
+  ["Transmission finale", "Archive privée", "Séquence sélectionnée"],
+] as const;
+
+function buildVideos(files: string[], images: string[]) {
+  return files.map((fileName, index) => {
+    const [title, type, note] = videoNarratives[index] ?? videoNarratives[0];
+
+    return {
+      title,
+      type,
+      note,
+      chapter: `Film ${String(index + 1).padStart(2, "0")}`,
+      runtime: "Archive vidéo",
+      image: images[index % images.length],
+      videoUrl: `/videos/${encodeURIComponent(fileName)}`,
+    };
+  });
+}
+
+const milestoneCopy = [
   {
-    title: "Obsidian Walk",
-    type: "Runway nocturne à Paris",
-    runtime: "01:48",
-    image:
-      "/images/c1.jpeg",
-    videoUrl:
-      "/videos/luffy.mp4",
+    title: "Premiers castings",
+    body: "Les premières sélections posent la base: regard calme, posture nette et discipline de présence.",
+    signal: "Mémoire casting",
   },
   {
-    title: "Crimson Lens",
-    type: "Film campagne",
-    runtime: "02:16",
-    image:
-      "/images/c13.jpeg",
-    videoUrl:
-      "/videos/chrome.mp4",
+    title: "Période d’entraînement",
+    body: "Travail du pas, précision des angles et apprentissage d’une gestuelle taillée pour la caméra.",
+    signal: "Training runway",
   },
   {
-    title: "Atelier cyber",
-    type: "Séquence fittings",
-    runtime: "00:58",
-    image:
-      "/images/c6.jpeg",
-    videoUrl:
-      "/videos/afterdark.mp4",
+    title: "Premiers shootings professionnels",
+    body: "La silhouette s’affirme dans des portraits studio pensés comme des couvertures de magazine.",
+    signal: "Shooting éditorial",
+  },
+  {
+    title: "Campagnes mode",
+    body: "Luffy entre dans une narration plus luxueuse, entre styling couture et direction artistique futuriste.",
+    signal: "Campagne premium",
+  },
+  {
+    title: "Expériences internationales",
+    body: "Des signaux Paris, Milan, Tokyo et New York composent une trajectoire de mannequin global.",
+    signal: "Marché international",
+  },
+  {
+    title: "Apparitions runway",
+    body: "Le podium devient un territoire de tension cinématique, précis, silencieux et magnétique.",
+    signal: "Runway moment",
+  },
+  {
+    title: "Moments forts",
+    body: "Les archives cristallisent une identité: luxe sombre, énergie rouge et élégance cyber-mode.",
+    signal: "Career highlight",
   },
 ];
 
-const archives = [
-  {
-    year: "2026",
-    title: "Éditorial chrome à Tokyo",
-    body: "Une campagne rouge lumière construite autour d’un tailoring cinétique.",
-    signal: "Scan couture neural",
-    image: "/images/c9.jpeg",
-  },
-  {
-    year: "2025",
-    title: "Couture digitale à Milan",
-    body: "Luffy inaugure une installation fashion week assistée par IA.",
-    signal: "Runway hologramme",
-    image: "/images/c12.jpeg",
-  },
-  {
-    year: "2024",
-    title: "Cover afterdark à Paris",
-    body: "Couverture internationale avec styling monochrome cinématique.",
-    signal: "Archive éditoriale luxe",
-    image: "/images/c13.jpeg",
-  },
-  {
-    year: "2023",
-    title: "Ignition runway à Séoul",
-    body: "Premier booking luxe international et début runway en streaming.",
-    signal: "Transmission genesis",
-    image: "/images/c11.jpeg",
-  },
-];
+function buildArchives(images: string[]) {
+  return images.map((image, index) => {
+    const milestone = milestoneCopy[index % milestoneCopy.length];
 
-const castingSignals = [
-  { label: "Runway global", value: "42" },
-  { label: "Covers luxe", value: "18" },
-  { label: "Fit marché", value: "96%" },
-];
+    return {
+      year: String(2026 - Math.floor(index / 4)),
+      title: milestone.title,
+      body: milestone.body,
+      signal: milestone.signal,
+      image,
+      chapter: `Archive ${String(index + 1).padStart(2, "0")}`,
+    };
+  });
+}
+
+type LuffyVideo = ReturnType<typeof buildVideos>[number];
+type LuffyArchive = ReturnType<typeof buildArchives>[number];
 
 const fadeUp = {
   hidden: { opacity: 0, y: 34 },
   visible: { opacity: 1, y: 0 },
 };
 
-export function LuffyUniverseExperience() {
+export function LuffyUniverseExperience({
+  imageSources = luffyImages,
+  videoFiles: detectedVideoFiles = videoFiles,
+}: {
+  imageSources?: string[];
+  videoFiles?: string[];
+}) {
   const rootRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLElement>(null);
   const [introOpen, setIntroOpen] = useState(true);
+  const images = imageSources.length ? imageSources : luffyImages;
+  const videos = buildVideos(detectedVideoFiles.length ? detectedVideoFiles : videoFiles, images);
+  const archives = buildArchives(images);
+  const castingSignals = [
+    { label: "Runway global", value: "42" },
+    { label: "Films intégrés", value: String(videos.length) },
+    { label: "Archives visuelles", value: String(images.length) },
+  ];
   const { scrollYProgress } = useScroll();
   const heroDrift = useTransform(scrollYProgress, [0, 0.35], [0, -120]);
   const signalScale = useTransform(scrollYProgress, [0, 0.4], [1, 1.18]);
@@ -311,7 +393,7 @@ export function LuffyUniverseExperience() {
           >
             <div className="relative aspect-[4/5] overflow-hidden border border-[#ff244b]/20">
               <img
-                src="/images/c2.jpeg" alt="Profil mode futuriste de Luffy"
+                src={images[Math.min(11, images.length - 1)]} alt="Profil mode futuriste de Luffy"
                 className="h-full w-full object-cover grayscale"
               />
               <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent,rgba(3,0,0,0.72)),radial-gradient(circle_at_70%_20%,rgba(255,36,75,0.25),transparent_35%)]" />
@@ -335,9 +417,9 @@ export function LuffyUniverseExperience() {
         </motion.div>
       </section>
 
-      <FilmsSection />
-      <DimensionArchive />
-      <ArchivesTimeline />
+      <FilmsSection videos={videos} />
+      <DimensionArchive imageCount={images.length} videoCount={videos.length} />
+      <ArchivesTimeline archives={archives} />
       <CastingSection />
       <FooterSignal />
     </main>
@@ -469,14 +551,15 @@ function SectionIntro({
   );
 }
 
-function FilmsSection() {
+function FilmsSection({ videos }: { videos: LuffyVideo[] }) {
   return (
     <section id="films" className="relative z-10 py-24">
-      <SectionIntro eyebrow="Reels vidéo immersifs" title="Transmissions runway venues d’une autre dimension.">
-        Films runway nocturnes, fragments campagne et séquences cyber atelier
-        réunis dans un portail motion premium aux signaux cramoisis.
+      <SectionIntro eyebrow="Archive vidéo Luffy" title="Une cinémathèque runway pour explorer chaque signal de carrière.">
+        Toutes les vidéos disponibles deviennent des fragments de campagne:
+        castings, essais lumière, marches, backstage et portraits motion dans
+        une galerie premium pensée comme une archive de maison de luxe.
       </SectionIntro>
-      <div className="mx-auto grid max-w-7xl gap-4 px-5 sm:px-8 lg:grid-cols-3 lg:px-12">
+      <div className="mx-auto grid max-w-7xl gap-4 px-5 sm:px-8 md:grid-cols-2 lg:grid-cols-3 lg:px-12">
         {videos.map((video, index) => (
           <LuffyVideoCard key={video.title} video={video} index={index} />
         ))}
@@ -489,31 +572,47 @@ function LuffyVideoCard({
   video,
   index,
 }: {
-  video: { title: string; type: string; runtime: string; image: string; videoUrl: string };
+  video: LuffyVideo;
   index: number;
 }) {
   const [open, setOpen] = useState(false);
 
   return (
     <motion.article
+      initial={{ opacity: 0, y: 48, filter: "blur(12px)" }}
+      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.72, delay: Math.min(index * 0.035, 0.28), ease: [0.22, 1, 0.36, 1] }}
       whileHover={{ y: -8 }}
       className={cn(
-        "luffy-panel group relative min-h-[24rem] overflow-hidden border border-white/10 bg-white/[0.055] shadow-[0_0_70px_rgba(255,36,75,0.08)]",
-        index === 0 && "lg:col-span-2"
+        "luffy-panel group relative min-h-[24rem] overflow-hidden border border-white/10 bg-white/[0.055] shadow-[0_0_70px_rgba(255,36,75,0.08)] backdrop-blur-2xl",
+        index % 7 === 0 && "md:col-span-2"
       )}
     >
       <img
         src={video.image}
-        alt={`Film mode ${video.title}`}
-        className="absolute inset-0 h-full w-full object-cover opacity-70 grayscale transition duration-700 group-hover:scale-105 group-hover:opacity-100 group-hover:grayscale-0"
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full scale-110 object-cover opacity-26 blur-xl grayscale transition duration-700 group-hover:opacity-42"
+        loading="lazy"
+        decoding="async"
       />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,0,0,0.08),rgba(3,0,0,0.88)),radial-gradient(circle_at_30%_18%,rgba(255,36,75,0.24),transparent_34%)]" />
+      <img
+        src={video.image}
+        alt={`Film mode ${video.title}`}
+        className="absolute inset-0 h-full w-full object-contain p-2 opacity-82 grayscale transition duration-700 group-hover:scale-[1.02] group-hover:opacity-100 group-hover:grayscale-0 sm:p-3"
+        loading="lazy"
+        decoding="async"
+      />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,0,0,0.02),rgba(3,0,0,0.32)_48%,rgba(3,0,0,0.88)),radial-gradient(circle_at_30%_18%,rgba(255,36,75,0.2),transparent_34%)]" />
+      <div className="pointer-events-none absolute -left-24 top-0 h-full w-24 rotate-12 bg-white/18 blur-2xl transition duration-700 group-hover:left-[110%]" />
+      <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(255,215,158,0.88),transparent)] opacity-50" />
       <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(255,36,75,0.95),transparent)] opacity-0 transition duration-700 group-hover:opacity-100" />
 
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <button
-            className="absolute left-5 top-5 grid size-14 place-items-center rounded-full border border-[#ff244b]/30 bg-[#ff244b]/16 text-white backdrop-blur-xl transition group-hover:bg-[#ff244b]"
+            className="absolute left-5 top-5 grid size-14 place-items-center rounded-full border border-[#ffd79e]/30 bg-black/35 text-white shadow-[0_0_42px_rgba(255,36,75,0.28)] backdrop-blur-xl transition group-hover:border-[#ff244b] group-hover:bg-[#ff244b]"
             aria-label={`Lire ${video.title}`}
           >
             <Play className="ml-0.5 size-5 fill-current" />
@@ -526,7 +625,7 @@ function LuffyVideoCard({
         >
           <DialogTitle className="sr-only">{video.title}</DialogTitle>
           <DialogDescription className="sr-only">
-            Reel vidéo plein écran de l’univers Luffy pour {video.title}.
+            Lecture vidéo plein écran de l’archive Luffy pour {video.title}.
           </DialogDescription>
           <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(255,36,75,0.95),transparent)]" />
 
@@ -549,30 +648,31 @@ function LuffyVideoCard({
                 className="grid h-full min-h-0 grid-rows-[minmax(0,1fr)_auto]"
               >
                 <div className="relative min-h-0 w-full overflow-hidden bg-black">
+                  <div className="pointer-events-none absolute inset-0 z-10 bg-[radial-gradient(circle_at_50%_0%,rgba(255,36,75,0.18),transparent_38%)]" />
                   <video
                     key={video.videoUrl}
                     src={video.videoUrl}
-                    className="h-full w-full object-contain"
+                    className="h-full max-h-full w-full max-w-full object-contain"
                     controls
                     autoPlay
-                    muted
                     playsInline
                     preload="metadata"
                   />
                 </div>
 
-                <div className="shrink-0 border-t border-[#ff244b]/20 bg-black/70 px-5 py-4 backdrop-blur-xl">
-                  <div className="flex items-center justify-between gap-4">
+                <div className="shrink-0 border-t border-[#ff244b]/20 bg-black/75 px-5 py-4 backdrop-blur-xl">
+                  <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <p className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.28em] text-[#ff8aa0]">
                       <Sparkles className="size-3" />
                       {video.type}
                     </p>
                     <p className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.2em] text-white/45">
                       <Timer className="size-3.5" />
-                      {video.runtime}
+                      {video.chapter}
                     </p>
                   </div>
                   <h3 className="mt-1.5 text-xl font-semibold">{video.title}</h3>
+                  <p className="mt-2 max-w-2xl text-sm leading-6 text-white/52">{video.note}</p>
                 </div>
               </motion.div>
             )}
@@ -587,15 +687,16 @@ function LuffyVideoCard({
           </p>
           <p className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.2em] text-white/45">
             <Timer className="size-3.5" />
-            {video.runtime}
+            {video.chapter}
           </p>
         </div>
         <h3 className="mt-2 text-3xl font-semibold">{video.title}</h3>
+        <p className="mt-2 max-w-xl text-sm leading-6 text-white/54">{video.note}</p>
         <div className="mt-4 h-1 overflow-hidden bg-white/10">
           <motion.span
-            className="block h-full bg-[#ff244b]"
+            className="block h-full bg-[linear-gradient(90deg,#ff244b,#ffd79e)]"
             initial={{ width: "18%" }}
-            whileInView={{ width: `${52 + index * 16}%` }}
+            whileInView={{ width: `${Math.min(96, 44 + index * 5)}%` }}
             viewport={{ once: true }}
             transition={{ duration: 1.1, ease: "easeOut" }}
           />
@@ -605,7 +706,7 @@ function LuffyVideoCard({
   );
 }
 
-function DimensionArchive() {
+function DimensionArchive({ imageCount, videoCount }: { imageCount: number; videoCount: number }) {
   return (
     <section className="relative z-10 px-5 py-20 sm:px-8 lg:px-12">
       <div className="luffy-panel mx-auto grid max-w-7xl gap-8 overflow-hidden border border-[#ff244b]/18 bg-[radial-gradient(circle_at_22%_18%,rgba(255,36,75,0.22),transparent_32%),rgba(255,255,255,0.045)] p-6 backdrop-blur-2xl sm:p-10 lg:grid-cols-[0.75fr_1fr] lg:p-12">
@@ -623,10 +724,10 @@ function DimensionArchive() {
           </p>
         </div>
         <div className="grid gap-3 sm:grid-cols-3">
-          {[
-            { label: "Runway", value: "42 fichiers", icon: Zap },
-            { label: "Éditorial", value: "18 couvertures", icon: Sparkles },
-            { label: "Motion", value: "76 films", icon: Play },
+          {[ 
+            { label: "Runway", value: "42 signaux", icon: Zap },
+            { label: "Photos", value: `${imageCount} archives`, icon: Camera },
+            { label: "Motion", value: `${videoCount} films`, icon: Play },
           ].map(({ label, value, icon: Icon }) => (
             <motion.div
               key={label}
@@ -646,80 +747,142 @@ function DimensionArchive() {
   );
 }
 
-function ArchivesTimeline() {
+function ArchivesTimeline({ archives }: { archives: LuffyArchive[] }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const activeArchive = archives[activeIndex];
+  const progress = ((activeIndex + 1) / archives.length) * 100;
 
   return (
     <section id="archives" className="relative z-10 py-24">
-      <SectionIntro eyebrow="Chronologie interactive" title="Touchez les nœuds d’archives et changez de dimension.">
-        Chaque nœud capture un marché, une humeur et une évolution visuelle dans
-        l’histoire internationale de Luffy.
+      <SectionIntro eyebrow="Musée digital Luffy" title="Une chronologie visuelle de castings, shootings et moments runway.">
+        Chaque image devient une salle d’archive: premiers castings, entraînement,
+        séances professionnelles, campagnes, backstage et expériences
+        internationales réunis dans un parcours carrière immersif.
       </SectionIntro>
-      <div className="mx-auto grid max-w-7xl gap-6 px-5 sm:px-8 lg:grid-cols-[0.8fr_1fr] lg:px-12">
-        <motion.div
-          key={activeArchive.year}
-          initial={{ opacity: 0, scale: 0.96, filter: "blur(10px)" }}
-          animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-          transition={{ duration: 0.42, ease: "easeOut" }}
-          className="luffy-panel relative min-h-[31rem] overflow-hidden border border-white/10 bg-white/[0.055]"
-        >
-          <img
-            src={activeArchive.image}
-            alt={`Aperçu archive ${activeArchive.title}`}
-            className="absolute inset-0 h-full w-full object-cover opacity-70 grayscale"
-          />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,0,0,0.05),rgba(3,0,0,0.86)),radial-gradient(circle_at_20%_16%,rgba(255,36,75,0.28),transparent_34%)]" />
-          <div className="absolute inset-x-5 bottom-5 border border-white/12 bg-black/45 p-5 backdrop-blur-2xl">
-            <p className="text-xs uppercase tracking-[0.28em] text-[#ff8aa0]">
-              {activeArchive.signal}
-            </p>
-            <h3 className="mt-3 text-3xl font-semibold">{activeArchive.title}</h3>
-            <p className="mt-3 text-sm leading-7 text-white/55">{activeArchive.body}</p>
+
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+        <div className="luffy-panel grid gap-5 border border-[#ff244b]/18 bg-[radial-gradient(circle_at_18%_16%,rgba(255,36,75,0.18),transparent_34%),rgba(255,255,255,0.045)] p-4 backdrop-blur-2xl sm:p-6 lg:grid-cols-[0.84fr_0.46fr]">
+          <motion.div
+            key={activeArchive.image}
+            initial={{ opacity: 0, scale: 0.97, filter: "blur(10px)" }}
+            animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="overflow-hidden border border-white/10 bg-black"
+          >
+            <div className="relative grid min-h-[28rem] place-items-center overflow-hidden bg-[radial-gradient(circle_at_50%_18%,rgba(255,36,75,0.16),transparent_34%),#050101] p-3 sm:min-h-[34rem]">
+              <img
+                src={activeArchive.image}
+                alt={`Aperçu archive ${activeArchive.title}`}
+                className="max-h-[68svh] w-full object-contain opacity-86 grayscale transition duration-700 hover:scale-[1.02] hover:grayscale-0"
+                loading="lazy"
+                decoding="async"
+              />
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_16%,rgba(255,36,75,0.2),transparent_34%),linear-gradient(180deg,rgba(3,0,0,0.06),transparent_44%,rgba(3,0,0,0.24))]" />
+              <div className="absolute left-4 top-4 inline-flex items-center gap-2 border border-[#ffd79e]/24 bg-black/45 px-3 py-2 text-xs uppercase tracking-[0.24em] text-[#ffd79e] backdrop-blur-xl sm:left-5 sm:top-5">
+                <Trophy className="size-3.5" />
+                {activeArchive.chapter}
+              </div>
+            </div>
+            <div className="border-t border-white/10 bg-black/56 p-5 backdrop-blur-2xl">
+              <p className="text-xs uppercase tracking-[0.28em] text-[#ff8aa0]">
+                {activeArchive.signal}
+              </p>
+              <h3 className="mt-3 text-3xl font-semibold">{activeArchive.title}</h3>
+              <p className="mt-3 max-w-2xl text-sm leading-7 text-white/58">{activeArchive.body}</p>
+            </div>
+          </motion.div>
+
+          <div className="flex min-h-0 flex-col border border-white/10 bg-black/30 p-4 backdrop-blur-xl">
+            <div className="flex items-center justify-between gap-4">
+              <p className="text-xs uppercase tracking-[0.28em] text-[#ff8aa0]">
+                Progression carrière
+              </p>
+              <p className="text-xs uppercase tracking-[0.2em] text-white/38">
+                {activeIndex + 1}/{archives.length}
+              </p>
+            </div>
+            <div className="mt-4 h-1 overflow-hidden bg-white/10">
+              <motion.span
+                className="block h-full bg-[linear-gradient(90deg,#ff244b,#ffd79e)]"
+                animate={{ width: `${progress}%` }}
+                transition={{ duration: 0.45, ease: "easeOut" }}
+              />
+            </div>
+            <div className="jmv-scrollbar mt-5 max-h-[28rem] space-y-3 overflow-y-auto pr-1">
+              {archives.map((archive, index) => {
+                const active = activeIndex === index;
+
+                return (
+                  <motion.button
+                    key={`${archive.chapter}-${archive.image}`}
+                    type="button"
+                    onClick={() => setActiveIndex(index)}
+                    className={cn(
+                      "group grid w-full grid-cols-[4.75rem_1fr] gap-3 border p-2 text-left transition",
+                      active
+                        ? "border-[#ff244b]/50 bg-[#ff244b]/12 shadow-[0_0_42px_rgba(255,36,75,0.12)]"
+                        : "border-white/10 bg-white/[0.045] hover:border-[#ffd79e]/30 hover:bg-white/[0.075]"
+                    )}
+                    whileHover={{ x: 5 }}
+                  >
+                    <span className="relative grid h-20 place-items-center overflow-hidden bg-black">
+                      <img
+                        src={archive.image}
+                        alt={`Miniature ${archive.title}`}
+                        className="h-full w-full object-contain opacity-80 grayscale transition duration-500 group-hover:scale-105 group-hover:grayscale-0"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </span>
+                    <span>
+                      <span className="flex items-center gap-2 text-[0.62rem] uppercase tracking-[0.18em] text-[#ff8aa0]">
+                        <CalendarDays className="size-3" />
+                        {archive.year}
+                      </span>
+                      <span className="mt-1 block text-sm font-semibold text-white">{archive.title}</span>
+                      <span className="mt-1 line-clamp-2 text-xs leading-5 text-white/44">
+                        {archive.signal}
+                      </span>
+                    </span>
+                  </motion.button>
+                );
+              })}
+            </div>
           </div>
-        </motion.div>
+        </div>
 
-        <div className="relative border-l border-[#ff244b]/25 pl-6 sm:pl-10">
-          {archives.map((archive, index) => {
-            const active = activeIndex === index;
-
-            return (
-              <motion.button
-                key={archive.year}
-                type="button"
-                onClick={() => setActiveIndex(index)}
-                className={cn(
-                  "luffy-panel relative mb-4 w-full border p-5 text-left backdrop-blur-xl transition last:mb-0 sm:p-6",
-                  active
-                    ? "border-[#ff244b]/45 bg-[#ff244b]/12 shadow-[0_0_60px_rgba(255,36,75,0.12)]"
-                    : "border-white/10 bg-white/[0.055] hover:border-white/24 hover:bg-white/[0.08]"
-                )}
-                whileHover={{ x: 8 }}
-              >
-                <span
-                  className={cn(
-                    "absolute -left-[2.1rem] top-6 grid size-4 place-items-center rounded-full shadow-[0_0_26px_rgba(255,36,75,0.9)] sm:-left-[3.1rem]",
-                    active ? "bg-white" : "bg-[#ff244b]"
-                  )}
+        <div className="mt-5 columns-1 gap-4 sm:columns-2 lg:columns-3">
+          {archives.map((archive, index) => (
+            <motion.button
+              key={`museum-${archive.image}`}
+              type="button"
+              onClick={() => setActiveIndex(index)}
+              initial={{ opacity: 0, y: 36 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-70px" }}
+              transition={{ duration: 0.62, delay: Math.min(index * 0.025, 0.18), ease: "easeOut" }}
+              className="luffy-panel group mb-4 w-full break-inside-avoid overflow-hidden border border-white/10 bg-white/[0.045] text-left shadow-[0_0_64px_rgba(255,36,75,0.06)] backdrop-blur-xl transition hover:border-[#ffd79e]/32"
+            >
+              <div className={cn("relative grid place-items-center overflow-hidden bg-[radial-gradient(circle_at_50%_16%,rgba(255,36,75,0.13),transparent_34%),#050101] p-2", index % 5 === 0 ? "aspect-[4/5]" : "aspect-[3/4]")}>
+                <img
+                  src={archive.image}
+                  alt={`Archive visuelle ${archive.title}`}
+                  className="max-h-full w-full object-contain opacity-82 grayscale transition duration-700 group-hover:scale-[1.02] group-hover:opacity-100 group-hover:grayscale-0"
+                  loading="lazy"
+                  decoding="async"
                 />
-                <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                  <div>
-                    <p className="flex items-center gap-2 text-xs uppercase tracking-[0.28em] text-[#ff8aa0]">
-                      <CalendarDays className="size-3.5" />
-                      {archive.year}
-                    </p>
-                    <h3 className="mt-3 text-2xl font-semibold">{archive.title}</h3>
-                    <p className="mt-3 max-w-2xl text-sm leading-7 text-white/54">
-                      {archive.body}
-                    </p>
-                  </div>
-                  <span className="text-xs uppercase tracking-[0.2em] text-white/32">
-                    nœud 0{index + 1}
-                  </span>
-                </div>
-              </motion.button>
-            );
-          })}
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_24%_18%,rgba(255,36,75,0.18),transparent_34%)]" />
+              </div>
+              <div className="border-t border-white/10 bg-black/45 p-4">
+                <p className="flex items-center gap-2 text-[0.62rem] uppercase tracking-[0.2em] text-[#ffd79e]">
+                  <MapPin className="size-3" />
+                  {archive.chapter}
+                </p>
+                <h3 className="mt-2 text-xl font-semibold">{archive.title}</h3>
+                <p className="mt-2 line-clamp-2 text-xs leading-5 text-white/50">{archive.body}</p>
+              </div>
+            </motion.button>
+          ))}
         </div>
       </div>
     </section>

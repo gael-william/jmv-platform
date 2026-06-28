@@ -31,25 +31,25 @@ export const featuredModels: FeaturedModel[] = [
   {
     name: "Nidal Christou",
     city: "Burkina Faso",
-    image: "/images/c4.jpeg",
+    image: "/images/home/luffy-shooting-4.jpeg",
     signal: "Repérage éditorial IA",
   },
   {
     name: "Kai Voss",
     city: "Milan",
-    image: "/images/c16.jpg",
+    image: "/images/home/c16.jpg",
     signal: "Runway chrome",
   },
   {
     name: "Sienna Vale",
     city: "New York",
-    image: "/images/c19.jpg",
+    image: "/images/home/c19.jpg",
     signal: "Campagne prestige",
   },
   {
     name: "Mika Saint",
     city: "Tokyo",
-    image: "/images/c20.jpg",
+    image: "/images/home/c20.jpg",
     signal: "Portfolio en mouvement",
   },
 ];
@@ -59,7 +59,7 @@ export const fashionVideos: FashionVideo[] = [
     title: "Neon Couture Walk",
     meta: "Boucle runway 4K",
     image:
-      "/images/c21.jpg",
+      "/images/home/c21.jpg",
     videoUrl:
       "/videos/luffy.mp4",
   },
@@ -67,7 +67,7 @@ export const fashionVideos: FashionVideo[] = [
     title: "Chrome Casting Room",
     meta: "Reel studio",
     image:
-      "/images/c18.jpg",
+      "/images/home/c18.jpg",
     videoUrl:
       "/videos/chrome.mp4",
   },
@@ -75,7 +75,7 @@ export const fashionVideos: FashionVideo[] = [
     title: "Afterdark Fittings",
     meta: "Montage créateur",
     image:
-      "/images/c17.jpg",
+      "/images/home/c17.jpg",
     videoUrl:
       "/videos/afterdark.mp4",
   },
